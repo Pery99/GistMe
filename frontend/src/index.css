@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar hiding */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* For showing scrollbar on hover if needed */
+.scrollbar-show-hover {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.scrollbar-show-hover:hover::-webkit-scrollbar {
+  display: block;
+}

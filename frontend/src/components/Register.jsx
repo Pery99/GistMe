@@ -23,12 +23,12 @@ const Register = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const formData = new FormData();
-      
+
       // Required fields
       const requiredFields = {
         username: values.username?.trim(),
         email: values.email?.trim(),
-        password: values.password
+        password: values.password,
       };
 
       // Validate required fields
@@ -37,7 +37,7 @@ const Register = () => {
         .map(([key]) => key);
 
       if (missingFields.length > 0) {
-        setError(`Missing required fields: ${missingFields.join(', ')}`);
+        setError(`Missing required fields: ${missingFields.join(", ")}`);
         return;
       }
 
@@ -48,26 +48,26 @@ const Register = () => {
 
       // Optional fields
       if (values.bio?.trim()) {
-        formData.append('bio', values.bio.trim());
+        formData.append("bio", values.bio.trim());
       }
-      
+
       if (values.avatar instanceof File) {
-        formData.append('avatar', values.avatar);
+        formData.append("avatar", values.avatar);
       }
 
       const response = await AuthService.register(formData);
-      
+
       if (response?.token) {
         navigate("/friends");
       } else {
-        throw new Error('No token received from server');
+        throw new Error("No token received from server");
       }
-    } catch (err) {  
+    } catch (err) {
       setError(
-        err.response?.data?.error || 
-        err.response?.data?.message || 
-        err.message || 
-        'Registration failed. Please check your information and try again.'
+        err.response?.data?.error ||
+          err.response?.data?.message ||
+          err.message ||
+          "Registration failed. Please check your information and try again."
       );
     } finally {
       setSubmitting(false);
@@ -95,7 +95,7 @@ const Register = () => {
               avatar: null,
             }}
             validationSchema={registerSchema}
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit}s
           >
             {({ isSubmitting, setFieldValue, errors, touched }) => (
               <Form className="space-y-6" encType="multipart/form-data">

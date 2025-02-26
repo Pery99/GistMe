@@ -11,9 +11,16 @@ const messageRoutes = require('./routes/messages');
 dotenv.config();
 const app = express();
 
+const corsOptions = {
+  origin: ['https://gist-me-ten.vercel.app', 'http://localhost:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
+};
+
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Database connection
 mongoose.connect(process.env.MONGODB_URI)
